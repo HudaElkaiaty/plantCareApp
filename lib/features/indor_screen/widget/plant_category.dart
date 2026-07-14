@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:plantcare/features/home/widgets/plant_card.dart';
+/*import 'package:flutter/material.dart';
 
 class PlantCategory extends StatelessWidget {
   const PlantCategory({super.key});
@@ -10,9 +9,9 @@ class PlantCategory extends StatelessWidget {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       scrollDirection: Axis.vertical,
     itemBuilder: (context, index) {
-      PlantCard(image: image, text: text, onPressed: onPressed)
+     // PlantCard(image: image, text: text, onPressed: onPressed)
   
 },
     );
   }
-}
+}*/

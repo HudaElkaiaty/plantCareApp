@@ -24,7 +24,7 @@ class PlantModel {
   });
 
   factory PlantModel.fromJson(
-      Map<String, dynamic> json, String id) {
+      Map<String, dynamic> json) {
     return PlantModel(
       name: json['name'],
       image: json['image'],

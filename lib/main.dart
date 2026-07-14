@@ -6,13 +6,14 @@ import 'package:plantcare/features/indor_screen/indoor_screen.dart';
 import 'package:plantcare/features/outdoor/outdoor_screen.dart';
 import 'package:plantcare/firebase_options.dart';
 
+
 void main()async {
     WidgetsFlutterBinding.ensureInitialized();
      await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform);
+  options: DefaultFirebaseOptions.currentPlatform);
   FirebaseDataSource firebaseDataSource = FirebaseDataSource();
-  
- // await firebaseDataSource.addPlant();
+
+ await firebaseDataSource.addPlant();
 
   runApp(const MyApp());
 }

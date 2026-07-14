@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:plantcare/core/color_manager.dart';
 
 class IndoorScreen extends StatelessWidget {
   const IndoorScreen({super.key});
