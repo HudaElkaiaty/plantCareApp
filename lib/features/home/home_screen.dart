@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:plantcare/features/home/widgets/custom_drawer.dart';
 import 'package:plantcare/features/home/widgets/plant_list.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,6 +9,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Plant Care'),
+      ),
+      drawer: ProfileDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

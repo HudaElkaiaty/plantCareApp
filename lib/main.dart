@@ -6,6 +6,7 @@ import 'package:plantcare/features/home/cubit/home_cubit.dart';
 import 'package:plantcare/features/home/home_screen.dart';
 import 'package:plantcare/features/indor_screen/indoor_screen.dart';
 import 'package:plantcare/features/outdoor/outdoor_screen.dart';
+import 'package:plantcare/features/profile/cubit/profile_cubit.dart';
 import 'package:plantcare/firebase_options.dart';
 import 'package:plantcare/core/data_source/firebase_data_source.dart';
 
@@ -25,8 +26,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => HomeCubit()..getPlant(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => HomeCubit()..getPlant(),
+        ),
+        BlocProvider(
+          create: (_) => ProfileCubit()..getUserProfile(),
+        ),
+      ],
       child: ScreenUtilInit(
         designSize: const Size(390, 844),
         minTextAdapt: true,
