@@ -109,6 +109,17 @@ class FirebaseDataSource {
         height: 30,
         humidity: 0,
       ),
+      PlantModel(
+        name: 'Green Potted Plant',
+        image: 'assets/BirdofParadise.png',
+        description:
+            'A lovely topic! Green potted plants are great way to bring some natural beauty and freshness into your home or office. They come in a variety of shapes, sizes, and species, such as succulents, ferns, and peace lilies...Read More',
+        category: 'Outdoor',
+        size: 'Medium',
+        plantType: 'Palm',
+        height: 40,
+        humidity: 70,
+      ),
     ];
     try {
       for (PlantModel plant in plantData) {
