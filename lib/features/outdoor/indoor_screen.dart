@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plantcare/features/home/cubit/home_cubit.dart';
 import 'package:plantcare/features/home/cubit/state_home.dart';
 import 'package:plantcare/features/home/widget/custom_plant.dart';
 
-class OutdoorScreen extends StatelessWidget {
-  const OutdoorScreen({super.key});
+class IndoorScreen extends StatelessWidget {
+  const IndoorScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,60 +14,60 @@ class OutdoorScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 50),
-        
+            SizedBox(height: 50.h),
+
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(width: 50),
+                  SizedBox(width: 50.w),
                   CircleAvatar(
-                    radius: 30,
+                    radius: 30.r,
                     backgroundColor: Colors.green,
                     child: IconButton(
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.chevron_left,
                         color: Colors.white,
-                        size: 35,
+                        size: 35.sp,
                       ),
                     ),
                   ),
-                  SizedBox(width: 50),
-                  Image.asset('assets/outdoorPlants.png'),
-                   SizedBox(height: 30),
-        
-                  
+                  SizedBox(width: 50.w),
+                  Image.asset("assets/indoorLogo.png"),
                 ],
-        
               ),
             ),
-              Expanded(
-            child: BlocBuilder<HomeCubit, HomeStates>(
-              builder: (context, state) {
-                if (state is HomeLoading) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (state is HomeSuccess) {
-                   final outdoorPlants =
-                  context.read<HomeCubit>().filterOutdoor(state.plants);
-                  return SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 20,
+
+            Expanded(
+              child: BlocBuilder<HomeCubit, HomeStates>(
+                builder: (context, state) {
+                  if (state is HomeLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is HomeSuccess) {
+                    final indoorPlants =
+                        context.read<HomeCubit>().filterIndoor(state.plants);
+
+                    return SingleChildScrollView(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20.w,
+                        vertical: 20.h,
                       ),
                       child: Column(
                         children: List.generate(
-                          (outdoorPlants.length / 2).ceil(),
+                          (indoorPlants.length / 2).ceil(),
                           (rowIndex) {
                             final firstIndex = rowIndex * 2;
                             final secondIndex = firstIndex + 1;
                             final hasSecond =
-                                secondIndex < outdoorPlants.length;
+                                secondIndex < indoorPlants.length;
 
                             return Padding(
-                              padding: const EdgeInsets.only(bottom: 16),
+                              padding: EdgeInsets.only(bottom: 16.h),
                               child: Row(
                                 mainAxisAlignment: hasSecond
                                     ? MainAxisAlignment.spaceBetween
@@ -75,20 +76,20 @@ class OutdoorScreen extends StatelessWidget {
                                   SizedBox(
                                     width:
                                         (MediaQuery.of(context).size.width -
-                                            56) /
-                                        2,
+                                                56.w) /
+                                            2,
                                     child: CustomPlant(
-                                      plants: outdoorPlants[firstIndex],
+                                      plants: indoorPlants[firstIndex],
                                     ),
                                   ),
                                   if (hasSecond)
                                     SizedBox(
                                       width:
                                           (MediaQuery.of(context).size.width -
-                                              56) /
-                                          2,
+                                                  56.w) /
+                                              2,
                                       child: CustomPlant(
-                                        plants: outdoorPlants[secondIndex],
+                                        plants: indoorPlants[secondIndex],
                                       ),
                                     ),
                                 ],
@@ -98,34 +99,36 @@ class OutdoorScreen extends StatelessWidget {
                         ),
                       ),
                     );
-                }
-                return Container();
-              },
+                  }
+                  return Container();
+                },
+              ),
             ),
-          ),
-        
           ],
         ),
       ),
-      
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        padding: EdgeInsets.fromLTRB(
+          20.w,
+          0,
+          20.w,
+          20.h,
+        ),
         child: SizedBox(
           width: double.infinity,
-          height: 55,
+          height: 55.h,
           child: ElevatedButton(
-            onPressed: () {
-            },
+            onPressed: () {},
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(30.r),
               ),
             ),
-            child: const Text(
+            child: Text(
               "Add to favorite",
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 18.sp,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
@@ -136,4 +139,3 @@ class OutdoorScreen extends StatelessWidget {
     );
   }
 }
-  

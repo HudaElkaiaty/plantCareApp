@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plantcare/core/color_manager.dart';
 
 class PlantCard extends StatelessWidget {
@@ -20,8 +21,8 @@ class PlantCard extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            width: 150,
-            height: 160,
+            width: 150.w,
+            height: 160.h,
             decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(color: Colors.grey.shade300),
@@ -31,12 +32,12 @@ class PlantCard extends StatelessWidget {
               fit: BoxFit.contain,
             ),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.h),
           Text(
             text,
-            style: const TextStyle(
-              color:ColorManager.greenColor,
-              fontSize: 16,
+            style: TextStyle(
+              color: ColorManager.greenColor,
+              fontSize: 16.sp,
             ),
           ),
         ],
