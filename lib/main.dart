@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plant_app/features/Home/home_screen.dart';
+
 import 'package:plant_app/features/auth/cubit/auth_cubit.dart';
 import 'package:plant_app/features/auth/cubit/auth_states.dart';
-import 'package:plant_app/features/auth/screens/login_screen.dart';
+import 'package:plant_app/features/auth/login/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +36,19 @@ class MyPlant extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+} // test
+
+// Simple HomeScreen placeholder to fix missing class error.
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Home')),
+      body: const Center(child: Text('Welcome')),
     );
   }
 }

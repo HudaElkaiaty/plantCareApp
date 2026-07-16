@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_app/core/styles/colors_manager.dart';
 import 'package:plant_app/core/styles/styles_manager.dart';
 import 'package:plant_app/core/validators/validators.dart';
-import 'package:plant_app/core/widgets/custom_text_form_field.dart';
-import 'package:plant_app/features/Home/home_screen.dart';
+import 'package:plant_app/features/auth/widgets/custom_text_form_field.dart';
+
 import 'package:plant_app/features/auth/cubit/auth_cubit.dart';
 import 'package:plant_app/features/auth/cubit/auth_states.dart';
-import 'package:plant_app/features/auth/screens/signup_screen.dart';
+import 'package:plant_app/features/auth/signup/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -22,7 +22,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>(); //mean-------
   @override
   void dispose() {
-    //mean___---------------------
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -64,10 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
         }
 
         if (state.status == AuthStatus.authenticated) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
-          );
+          Navigator.pushReplacementNamed(context, '/home');
         }
       },
       builder: (context, state) {
@@ -143,12 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Center(
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HomeScreen(),
-                                ),
-                              );
+                              Navigator.pushNamed(context, '/home');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColor.backgroundButton,
@@ -195,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   if (state is AuthLoading)
                     Container(
-                      color: Colors.black.withValues(alpha: 0.4),
+                      color: Colors.black.withValues(alpha: 0.3),
                       child: const Center(child: CircularProgressIndicator()),
                     ),
                 ],

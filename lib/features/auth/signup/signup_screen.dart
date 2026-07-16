@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_app/core/styles/colors_manager.dart';
 import 'package:plant_app/core/styles/styles_manager.dart';
 import 'package:plant_app/core/validators/validators.dart';
-import 'package:plant_app/core/widgets/custom_text_form_field.dart';
-import 'package:plant_app/core/widgets/terms_checkbox_simple.dart';
+
 import 'package:plant_app/features/auth/cubit/auth_cubit.dart';
+import 'package:plant_app/features/auth/widgets/terms_checkbox_simple.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -22,9 +22,6 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _termsAccepted = false;
-  bool _isEmailValid = false;
-  bool _isPasswordValid = false;
-  bool _isConfirmPasswordValid = false;
 
   @override
   void dispose() {
@@ -117,33 +114,35 @@ class _SignupScreenState extends State<SignupScreen> {
                     Text('Create your Account', style: StyleManager.black14org),
 
                     SizedBox(height: 22.71),
-                    CustomTextFormField(
+                    TextFormField(
                       controller: _emailController,
-                      labelText: 'Email',
-                      hintText: 'Enter E-mail',
                       keyboardType: TextInputType.emailAddress,
+                      decoration: const InputDecoration(
+                        labelText: 'Email',
+                        hintText: 'Enter E-mail',
+                      ),
                       validator: Validators.validateEmail,
-                      onChanged: (value) {
-                        setState(() {});
-                      },
+                      onChanged: (value) => setState(() {}),
                     ),
                     SizedBox(height: 22.83),
-                    CustomTextFormField(
+                    TextFormField(
                       controller: _passwordController,
-                      labelText: 'Password',
-                      hintText: 'Enter Password',
-                      isPassword: true,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        labelText: 'Password',
+                        hintText: 'Enter Password',
+                      ),
                       validator: Validators.validatePassword,
-                      onChanged: (value) {
-                        setState(() {});
-                      },
+                      onChanged: (value) => setState(() {}),
                     ),
                     SizedBox(height: 22.83),
-                    CustomTextFormField(
+                    TextFormField(
                       controller: _confirmPasswordController,
-                      labelText: 'Confirm Password',
-                      hintText: 'Enter Password',
-                      isPassword: true,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        labelText: 'Confirm Password',
+                        hintText: 'Enter Password',
+                      ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please confirm password';
@@ -153,9 +152,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         }
                         return null;
                       },
-                      onChanged: (value) {
-                        setState(() {});
-                      },
+                      onChanged: (value) => setState(() {}),
                     ),
                     SizedBox(height: 10),
                     TermsCheckbox(

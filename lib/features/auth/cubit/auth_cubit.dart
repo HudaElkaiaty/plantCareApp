@@ -3,9 +3,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:plant_app/data/data_source/auth_service.dart';
-
+import 'package:plant_app/core/data_source/firebase_data_source.dart';
 import 'auth_states.dart';
+
+class AuthService {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
+
+  Future<User?> signInWithEmailPassword(String email, String password) async {
+    final credential = await _firebaseAuth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    return credential.user;
+  }
+
+  Future<User?> signUpWithEmailPassword(String email, String password) async {
+    final credential = await _firebaseAuth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    final user = credential.user;
+    if (user != null) {
+      await user.reload();
+      return _firebaseAuth.currentUser;
+    }
+    return null;
+  }
+
+  Future<void> signOut() async {
+    await _firebaseAuth.signOut();
+  }
+}
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthService _authService = AuthService();
@@ -77,11 +107,7 @@ class AuthCubit extends Cubit<AuthState> {
   }) async {
     emit(AuthLoading());
     try {
-      final user = await _authService.signUpWithEmailPassword(
-        email,
-        password,
-        fullName,
-      );
+      final user = await _authService.signUpWithEmailPassword(email, password);
       if (user != null) {
         emit(AuthAuthenticated(user));
       } else {
