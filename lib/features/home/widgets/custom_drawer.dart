@@ -66,15 +66,13 @@ class ProfileDrawer extends StatelessWidget {
             ),
             title: const Text('Care Tips'),
             onTap: () {
-              // Navigate to Care Tips Screen
+              Navigator.pushNamed(context, '/care_tips');
             },
           ),
           ListTile(
             leading: const Icon(Icons.water_drop_outlined, color: Colors.green),
             title: const Text('Propagation Guide'),
-            onTap: () {
-              // Navigate to Propagation guide Screen
-            },
+            onTap: () {},
           ),
           ListTile(
             leading: const Icon(
@@ -105,7 +103,7 @@ class ProfileDrawer extends StatelessWidget {
             },
           ),
 
-          const Spacer(), 
+          const Spacer(),
           const Divider(),
 
           ListTile(
