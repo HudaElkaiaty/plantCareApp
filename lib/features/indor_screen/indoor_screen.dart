@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plantcare/features/home/cubit/home_cubit.dart';
 import 'package:plantcare/features/home/cubit/state_home.dart';
-import 'package:plantcare/features/home/widget/custom_plant.dart';
+import 'package:plantcare/features/home/widgets/custom_plant.dart';
 
 class IndoorScreen extends StatelessWidget {
   const IndoorScreen({super.key});

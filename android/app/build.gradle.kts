@@ -37,9 +37,10 @@ android {
     }
 }
 
-kotlin {
+// 👇 دي الطريقة الرسمية الحديثة لـ Kotlin 2.0+ عشان نحدد Java 17 بدون أي إيرورز أو تحذيرات
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     compilerOptions {
-        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
     }
 }
 
