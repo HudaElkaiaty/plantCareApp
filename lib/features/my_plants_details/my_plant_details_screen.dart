@@ -17,9 +17,7 @@ class MyPlantDetailsScreen extends StatelessWidget {
     return BlocBuilder<MyPlantsCubit, MyPlantsStates>(
       builder: (context, state) {
         final cubit = MyPlantsCubit.get(context);
-        final plant = PlantModel.fromJson(
-          cubit.myPlantsList[plantIndex] as Map<String, dynamic>,
-        );
+        final plant = cubit.myPlantsList[plantIndex];
         
         // calculations
         DateTime? lastWateredDate = plant.lastWatered != null

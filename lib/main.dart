@@ -6,7 +6,7 @@ import 'package:plantcare/features/care_tips/care_tips_screen.dart';
 import 'package:plantcare/features/home/cubit/home_cubit.dart';
 import 'package:plantcare/features/home/home_screen.dart';
 import 'package:plantcare/features/indor_screen/indoor_screen.dart';
-import 'package:plantcare/features/my_plants_details/my_app_details_screen.dart';
+import 'package:plantcare/features/my_plants_details/my_plant_details_screen.dart';
 import 'package:plantcare/features/outdoor/outdoor_screen.dart';
 import 'package:plantcare/features/profile/cubit/profile_cubit.dart';
 import 'package:plantcare/features/propagation%20guide/proagation_screen.dart';

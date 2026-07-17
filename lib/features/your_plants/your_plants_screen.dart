@@ -77,7 +77,7 @@ class YourPlantsScreen extends StatelessWidget {
                 ),
                 itemCount: myPlantsList.length,
                 itemBuilder: (context, index) {
-                  final plant = PlantModel.fromJson(myPlantsList[index] as Map<String, dynamic>);
+                  final plant = myPlantsList[index];
 
                   return MyPlantCard(plant: plant, index: index);
                 },
