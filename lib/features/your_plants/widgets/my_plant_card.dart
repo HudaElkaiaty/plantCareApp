@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plantcare/features/detail_screen/details_screen.dart';
 import 'package:plantcare/features/home/model/plant_model.dart';
-
+  
 class MyPlantCard extends StatelessWidget {
   final PlantModel plant;
 
