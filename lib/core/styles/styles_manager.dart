@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:plant_app/core/styles/colors_manager.dart';
 
 class StyleManager {
+  static const bool isMobile = false;
+  static const bool isTablet = false;
+
   static final TextStyle white36header = TextStyle(
-    fontSize: 36,
+    fontSize: isMobile ? 28 : (isTablet ? 36 : 42),
     fontWeight: FontWeight.w700,
     color: AppColor.white,
     fontFamily: 'Inter',
