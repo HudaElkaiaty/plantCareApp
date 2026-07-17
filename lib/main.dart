@@ -8,6 +8,8 @@ import 'package:plantcare/features/home/home_screen.dart';
 import 'package:plantcare/features/indor_screen/indoor_screen.dart';
 import 'package:plantcare/features/outdoor/outdoor_screen.dart';
 import 'package:plantcare/features/profile/cubit/profile_cubit.dart';
+import 'package:plantcare/features/your_plants/cubit/plants_cubit.dart';
+import 'package:plantcare/features/your_plants/your_plants_screen.dart';
 import 'package:plantcare/firebase_options.dart';
 import 'package:plantcare/core/data_source/firebase_data_source.dart';
 
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => HomeCubit()..getPlant()),
         BlocProvider(create: (_) => ProfileCubit()..getUserProfile()),
+        BlocProvider(create: (context) => MyPlantsCubit()..getMyPlants()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(390, 844),
@@ -44,6 +47,8 @@ class MyApp extends StatelessWidget {
               '/indoorScreen': (_) => const IndoorScreen(),
               '/outdoorScreen': (_) => const OutdoorScreen(),
               '/care_tips': (_) => const CareTipsScreen(),
+              '/yourPlantsScreen': (_) => const YourPlantsScreen(),
+
             },
           );
         },
