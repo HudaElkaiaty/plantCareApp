@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:plantcare/core/color_manager.dart'; 
+import 'package:plantcare/core/style_manager.dart'; 
 import 'package:plantcare/features/home/model/plant_model.dart';
 import 'package:plantcare/features/your_plants/cubit/plants_cubit.dart';
 import 'package:plantcare/features/your_plants/cubit/states.dart';
@@ -12,22 +14,20 @@ class YourPlantsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8FAFC),
+      backgroundColor: ColorManager.lightSlateBackground, 
       appBar: AppBar(
         title: Text(
           'My Plants',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: const Color(0xFF1E293B),
+          style: StyleManager.sectionTitleStyle.copyWith(
             fontSize: 20.sp,
           ),
         ),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black87,
+        backgroundColor: ColorManager.whiteColor, 
+        foregroundColor: ColorManager.textDarkBody, 
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new, size: 20.r),
+          icon: Icon(Icons.arrow_back_ios_new, size: 20.r), 
           onPressed: () {
             Navigator.pushNamedAndRemoveUntil(
               context,
@@ -42,7 +42,7 @@ class YourPlantsScreen extends StatelessWidget {
           builder: (context, state) {
             if (state is GetMyPlantsLoading) {
               return const Center(
-                child: CircularProgressIndicator(color: Colors.green),
+                child: CircularProgressIndicator(color: ColorManager.greenColor), 
               );
             } else if (state is GetMyPlantsSuccess) {
               final myPlantsList = state.myPlants;
@@ -54,17 +54,13 @@ class YourPlantsScreen extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.eco_outlined,
-                        size: 80.sp,
-                        color: Colors.grey[400],
+                        size: 80.r,
+                        color: ColorManager.dividerColor, 
                       ),
                       SizedBox(height: 16.h),
                       Text(
                         'No plants added yet!',
-                        style: TextStyle(
-                          fontSize: 18.sp,
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: StyleManager.emptyStateTextStyle, 
                       ),
                     ],
                   ),
@@ -81,21 +77,26 @@ class YourPlantsScreen extends StatelessWidget {
                 ),
                 itemCount: myPlantsList.length,
                 itemBuilder: (context, index) {
-                  final plant = PlantModel.fromJson(myPlantsList[index]);
+                  final plant = PlantModel.fromJson(myPlantsList[index] as Map<String, dynamic>);
 
-                  return MyPlantCard(plant: plant);
+                  return MyPlantCard(plant: plant, index: index);
                 },
               );
             } else if (state is GetMyPlantsError) {
               return Center(
                 child: Text(
                   'Error: ${state.error}',
-                  style: TextStyle(color: Colors.red, fontSize: 14.sp),
+                  style: StyleManager.cardTitleStyle.copyWith(
+                    color: ColorManager.errorRed,
+                    fontSize: 14.sp,
+                  ),
                 ),
               );
             }
 
-            return Container();
+            return const Center(
+              child: CircularProgressIndicator(color: ColorManager.greenColor), 
+            );
           },
         ),
       ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plantcare/core/color_manager.dart'; 
+import 'package:plantcare/core/style_manager.dart'; 
 import 'package:plantcare/features/profile/cubit/profile_cubit.dart';
 import 'package:plantcare/features/profile/cubit/states.dart';
 
@@ -9,16 +11,17 @@ class ProfileDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: ColorManager.scaffoldBackground,
       child: Column(
         children: [
           BlocBuilder<ProfileCubit, ProfileState>(
             builder: (context, state) {
               if (state is ProfileLoading) {
                 return Container(
-                  height: 175,
-                  color: Colors.green[700],
+                  height: 175, 
+                  color: ColorManager.greenColor,
                   child: const Center(
-                    child: CircularProgressIndicator(color: Colors.white),
+                    child: CircularProgressIndicator(color: ColorManager.whiteColor),
                   ),
                 );
               }
@@ -26,29 +29,29 @@ class ProfileDrawer extends StatelessWidget {
               if (state is ProfileLoaded) {
                 return UserAccountsDrawerHeader(
                   currentAccountPicture: const CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: Icon(Icons.person, size: 50, color: Colors.green),
+                    backgroundColor: ColorManager.whiteColor,
+                    child: Icon(Icons.person, size: 40, color: ColorManager.greenColor), 
                   ),
                   accountName: Text(
                     state.name,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
+                    style: StyleManager.drawerHeaderNameStyle, 
                   ),
-                  accountEmail: Text(state.email),
-                  decoration: BoxDecoration(color: Colors.green[700]),
+                  accountEmail: Text(
+                    state.email,
+                    style: StyleManager.drawerHeaderEmailStyle,
+                  ),
+                  decoration: const BoxDecoration(color: ColorManager.greenColor), 
                 );
               }
 
               if (state is ProfileError) {
                 return Container(
-                  height: 175,
-                  color: Colors.green[700],
-                  child: const Center(
+                  height: 175, 
+                  color: ColorManager.greenColor, 
+                  child: Center(
                     child: Text(
                       'Failed to load profile',
-                      style: TextStyle(color: Colors.white),
+                      style: StyleManager.drawerHeaderNameStyle,
                     ),
                   ),
                 );
@@ -60,55 +63,34 @@ class ProfileDrawer extends StatelessWidget {
 
           // Menu Items
           ListTile(
-            leading: const Icon(
-              Icons.tips_and_updates_outlined,
-              color: Colors.green,
-            ),
-            title: const Text('Care Tips'),
+            leading: const Icon(Icons.eco_outlined, color: ColorManager.greenColor),
+            title: Text('My Plants', style: StyleManager.drawerItemTitleStyle), 
+            onTap: () {
+              Navigator.pushNamed(context, '/yourPlantsScreen');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.tips_and_updates_outlined, color: ColorManager.greenColor),
+            title: Text('Care Tips', style: StyleManager.drawerItemTitleStyle),
             onTap: () {
               Navigator.pushNamed(context, '/care_tips');
             },
           ),
           ListTile(
-            leading: const Icon(Icons.water_drop_outlined, color: Colors.green),
-            title: const Text('Propagation Guide'),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.notifications_active_outlined,
-              color: Colors.green,
-            ),
-            title: const Text('Watering Reminders'),
+            leading: const Icon(Icons.water_drop_outlined, color: ColorManager.greenColor),
+            title: Text('Propagation Guide', style: StyleManager.drawerItemTitleStyle),
             onTap: () {
-              // Navigate to Watering Reminders Screen
+                Navigator.pushNamed(context, '/propagation_guide');
             },
           ),
-          ListTile(
-            leading: const Icon(
-              Icons.manage_accounts_outlined,
-              color: Colors.green,
-            ),
-            title: const Text('Account Settings'),
-            onTap: () {
-              // Navigate to account settings Screen
-            },
-          ),
-
-          ListTile(
-            leading: const Icon(Icons.info_outline, color: Colors.green),
-            title: const Text('About App'),
-            onTap: () {
-              // Navigate to about app Screen
-            },
-          ),
+          
 
           const Spacer(),
-          const Divider(),
+          const Divider(color: ColorManager.dividerColor), 
 
           ListTile(
-            leading: const Icon(Icons.logout, color: Colors.red),
-            title: const Text('Log Out', style: TextStyle(color: Colors.red)),
+            leading: const Icon(Icons.logout, color: ColorManager.errorRed),
+            title: Text('Log Out', style: StyleManager.drawerLogoutTitleStyle), 
             onTap: () {
               //log out logic
             },

@@ -11,7 +11,7 @@ class HomeCubit extends Cubit<HomeStates> {
 
   Future<void> getPlant() async {
     emit(HomeInitial());
-       try {
+      try {
       plants = await dataSource.getData();
       emit(HomeSuccess(plants: plants));
     } catch (e) {

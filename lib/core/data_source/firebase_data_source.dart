@@ -143,6 +143,13 @@ class FirebaseDataSource {
       rethrow;
     }
   }
+  Future<void> addPlantToMyPlants(Map<String, dynamic> plantData) async {
+    await _firestore.collection('my_plants').add(plantData);
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getMyPlantsStream() {
+    return _firestore.collection('my_plants').snapshots();
+  }
 }
 
 

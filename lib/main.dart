@@ -6,8 +6,10 @@ import 'package:plantcare/features/care_tips/care_tips_screen.dart';
 import 'package:plantcare/features/home/cubit/home_cubit.dart';
 import 'package:plantcare/features/home/home_screen.dart';
 import 'package:plantcare/features/indor_screen/indoor_screen.dart';
+import 'package:plantcare/features/my_plants_details/my_app_details_screen.dart';
 import 'package:plantcare/features/outdoor/outdoor_screen.dart';
 import 'package:plantcare/features/profile/cubit/profile_cubit.dart';
+import 'package:plantcare/features/propagation%20guide/proagation_screen.dart';
 import 'package:plantcare/features/your_plants/cubit/plants_cubit.dart';
 import 'package:plantcare/features/your_plants/your_plants_screen.dart';
 import 'package:plantcare/firebase_options.dart';
@@ -48,6 +50,8 @@ class MyApp extends StatelessWidget {
               '/outdoorScreen': (_) => const OutdoorScreen(),
               '/care_tips': (_) => const CareTipsScreen(),
               '/yourPlantsScreen': (_) => const YourPlantsScreen(),
+              '/myPlantDetailsScreen': (context) => const MyPlantDetailsScreen(),
+              '/propagation_guide': (_) => const PropagationScreen(),
 
             },
           );

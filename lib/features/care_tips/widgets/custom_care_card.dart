@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:plantcare/core/color_manager.dart'; 
+import 'package:plantcare/core/style_manager.dart'; 
 
 class CareTipCard extends StatelessWidget {
   final String title;
@@ -19,25 +21,28 @@ class CareTipCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: ColorManager.whiteColor, 
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: ColorManager.borderGray), 
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Text(icon, style: TextStyle(fontSize: 22.sp)),
+              Text(
+                icon, 
+                style: TextStyle(fontSize: 22.sp), 
+              ),
               SizedBox(width: 10.w),
               Text(
-                title,
-                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
-              ),
+  title,
+  style: StyleManager.tipCardTitleStyle, 
+),
             ],
           ),
           SizedBox(height: 10.h),
-          const Divider(),
+          const Divider(color: ColorManager.dividerColor),
 
           Column(
             children: [
@@ -48,22 +53,17 @@ class CareTipCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(top: 15.h, right: 6.w),
+                        padding: EdgeInsets.only(top: 15.h, right: 6.w), 
                         child: Icon(
                           Icons.circle,
-                          color: Colors.green[600],
+                          color: ColorManager.bulletGreen, 
                           size: 7.w,
                         ),
                       ),
-
                       Expanded(
                         child: Text(
                           tip,
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            color: const Color(0xFF475569),
-                            height: 1.3,
-                          ),
+                          style: StyleManager.tipBodyStyle, 
                         ),
                       ),
                     ],
